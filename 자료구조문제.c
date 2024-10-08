@@ -1,39 +1,31 @@
-#include<stdio.h> 
-int main()
-{
-	int a[101][101]={0};
-	int i,j,num,n,m;
-	scanf("%d",&n);
-	num = 1;
-	//1. 배열에 값을 저장하는 코드 작성
-	for(i = 0;i<n;i++)
+#include<stdio.h>
+int arr[201][201]={0};
+int main(){
+	int i, j, k, n, m, num=1;
+	scanf("%d %d",&n, &m);
+	k=2;//k= i+j의 값
+  
+	//배열의 인덱스 위치에 값을 저장 코드 작성
+	for(k = 0;k <n+m;k++)
 	{
-		if(i %2 ==0)
+		for(j = 0;j<m;j++)
 		{
-		for(int j=0;j<n;j++)
-		{
-			a[i][j] = num;
-			num+=1;
-		}
-		}
-		else
-		{
-			for (int j = n-1;j>=0;j--)
+			for(i = 0;i<n;i++)
 			{
-				a[i][j] = num;
-			num+=1;
+			if(k == i + j)
+				arr[i][j] = num++;
 			}
 		}
 	}
-	//2. 배열결과를 출력하는 코드 작성
-int check2 = 0;
-	for(i = 0;i<n;i++)
+	
+	// 배열의 결과를 출력
+for(i = 0;i<n;i++,puts(""))
+{
+	for(int j = 0;j<m;j++)
 	{
-		for(int j = 0;j<n;j++)
-		{
-			printf("%d",a[i][j]);
-		}
-		printf("\n");
+		printf("%d ",arr[i][j]);
 	}
+	
+}
 	return 0;
-	}
+}
