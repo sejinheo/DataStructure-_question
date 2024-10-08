@@ -1,42 +1,39 @@
-#include <stdio.h>
-	void inputArray( int a[][4], int row );
-	int totArray( int *a, int size);
-	int main()
+#include<stdio.h> 
+int main()
+{
+	int a[101][101]={0};
+	int i,j,num,n,m;
+	scanf("%d",&n);
+	num = 1;
+	//1. 배열에 값을 저장하는 코드 작성
+	for(i = 0;i<n;i++)
 	{
-			int score[3][4];
-			int i, j, tot;
-			double avg;
-			//printf("학생 3명, 각각 네 과목의 점수를 입력하세요\n");
-			//입력 함수 호출
-			inputArray(score,3);
-			for( i = 0 ; i < 3 ; i ++ )
+		if(i %2 ==0)
+		{
+		for(int j=0;j<n;j++)
+		{
+			a[i][j] = num;
+			num+=1;
+		}
+		}
+		else
+		{
+			for (int j = n-1;j>=0;j--)
 			{
-				 //총점 계산
-				tot = totArray(score[i],4);
-				 //평균 계산
-				avg = tot/4.;
-					printf("총점 : %.d, 평균 : %.2lf\n", tot, avg);
+				a[i][j] = num;
+			num+=1;
 			}
-			return 0;
+		}
 	}
-	void inputArray( int a[][4], int row )
+	//2. 배열결과를 출력하는 코드 작성
+int check2 = 0;
+	for(i = 0;i<n;i++)
 	{
-			int i, j;
-		// r행,4열 배열에 값 저장
-		for(i=0;i<row;i++)
+		for(int j = 0;j<n;j++)
 		{
-			for(j=0;j<4;j++)
-			{
-				scanf("%d",&a[i][j]);
-			}
+			printf("%d",a[i][j]);
 		}
-	}	
-	int totArray( int* a, int size){
-			int i, tot=0;
-		//각 학생 점수를 size개수만큼 배열로 받아 tot 계산
-		for(i=0;i<size;i++)
-		{
-			tot += a[i];
-		}
-			return tot;
+		printf("\n");
+	}
+	return 0;
 	}
