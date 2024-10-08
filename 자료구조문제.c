@@ -1,47 +1,35 @@
-//for 문 4개 한세트 le(왼끝),re(오른끝),te(위끝),(아래끝)
-//예시 프로그램 
-#include<stdio.h>
+#include <stdio.h>
 int main()
 {
-	int a[51][51];
-	int n;
-	scanf("%d",&n);
-	int num = 1;
-	int le =1,re=n,te=1,be=n;
-	while(num<=n*n)
+	int arr[301][301];
+	int n,m,k;
+	scanf("%d %d",&n, &m);
+
+	for(int i=0;i<n;i++)
 	{
-		for(int j=le;j<=re&&num<=n*n;j++)//윗쪽을 채움
+		for(int j =0;j<m;j++)
 		{
-			a[te][j] = num++;
-		}
-		te++;
-		
-		for(int i=te; i<=be&&num<=n*n; i++)//우측을 채움
-		{
-			a[i][re] = num++;
-		}
-		re--;
-		
-		for(int j=re; j>=le&&num<=n*n;j--)// 아랫쪽을 채움
-		{
-			a[be][j] = num++;
-		}
-		be--;
-		
-		for(int i=be; i>=te&&num<=n*n; i--)//좌측을 채움
-		{
-			a[i][le] = num++;
-		}
-		le++;
-	}
-	
-	
-	for(int i=1;i<=n;i++,puts(""))
-	{
-		for(int j = 1;j<=n;j++)
-		{
-			printf("%d",a[i][j]);
+			scanf("%d",&arr[i][j]);
 		}
 	}
+
+	scanf("%d",&k);
+	int sum[10000] = {0};
+	for(int m =0;m<k;m++)
+	{
+		int i,j,x,y;
+		scanf("%d %d %d %d",&i,&j,&x,&y);
+		
+		i--; j--; x--; y--;
+		for(int row = i;row <=x;row++)
+		{
+			for(int col = j;col<=y;col++)
+			{
+				sum[m] +=arr[row][col];
+			}
+		}
+	}
+	for(int i =0;i<k;i++)
+		printf("%d\n",sum[i]);
 	return 0;
-}    
+}
