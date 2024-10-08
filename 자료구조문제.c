@@ -1,31 +1,47 @@
+//for 문 4개 한세트 le(왼끝),re(오른끝),te(위끝),(아래끝)
+//예시 프로그램 
 #include<stdio.h>
-int arr[201][201]={0};
-int main(){
-	int i, j, k, n, m, num=1;
-	scanf("%d %d",&n, &m);
-	k=2;//k= i+j의 값
-  
-	//배열의 인덱스 위치에 값을 저장 코드 작성
-	for(k = 0;k <n+m;k++)
+int main()
+{
+	int a[51][51];
+	int n;
+	scanf("%d",&n);
+	int num = 1;
+	int le =1,re=n,te=1,be=n;
+	while(num<=n*n)
 	{
-		for(j = 0;j<m;j++)
+		for(int j=le;j<=re&&num<=n*n;j++)//윗쪽을 채움
 		{
-			for(i = 0;i<n;i++)
-			{
-			if(k == i + j)
-				arr[i][j] = num++;
-			}
+			a[te][j] = num++;
+		}
+		te++;
+		
+		for(int i=te; i<=be&&num<=n*n; i++)//우측을 채움
+		{
+			a[i][re] = num++;
+		}
+		re--;
+		
+		for(int j=re; j>=le&&num<=n*n;j--)// 아랫쪽을 채움
+		{
+			a[be][j] = num++;
+		}
+		be--;
+		
+		for(int i=be; i>=te&&num<=n*n; i--)//좌측을 채움
+		{
+			a[i][le] = num++;
+		}
+		le++;
+	}
+	
+	
+	for(int i=1;i<=n;i++,puts(""))
+	{
+		for(int j = 1;j<=n;j++)
+		{
+			printf("%d",a[i][j]);
 		}
 	}
-	
-	// 배열의 결과를 출력
-for(i = 0;i<n;i++,puts(""))
-{
-	for(int j = 0;j<m;j++)
-	{
-		printf("%d ",arr[i][j]);
-	}
-	
-}
 	return 0;
-}
+}    
